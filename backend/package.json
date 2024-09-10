@@ -13,9 +13,11 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
     "axios": "^1.7.7",
+    "better-sqlite3": "^11.3.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "node-cron": "^3.0.3",
-    "sqlite3": "^5.1.7"
+    "sql.js": "^1.11.0",
+    "sqlite3": "^5.1.6"
   }
 }

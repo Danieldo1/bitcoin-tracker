@@ -30,6 +30,7 @@ services:
     image: keinos/sqlite3
     volumes:
       - ./data:/data
+    command: tail -f /dev/null  
 
 volumes:
   data:
