@@ -1,70 +1,69 @@
-# bitcoin-tracker
+# Документация приложения для отслеживания цен на биткоин
 
-## Build Setup
-
-```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+## Содержание
+1. [Введение](#1-введение)
+2. [Требования к системе](#2-требования-к-системе)
+3. [Установка и запуск](#3-установка-и-запуск)
+4. [Структура проекта](#4-структура-проекта)
+5. [Использование приложения](#5-использование-приложения)
+6. [API endpoint](#6-api-эндпоинты)
 
 
-### `pages`
+## 1. Введение
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+Это приложение предназначено для отслеживания исторических данных о ценах на биткоин. Оно позволяет пользователям просматривать графики цен за различные периоды времени и получать доступ к историческим данным через API.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+## 2. Требования к системе
 
-### `plugins`
+- Docker и Docker Compose
+- Node.js (версия 20 или выше)
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+## 3. Установка и запуск
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+1. Клонируйте репозиторий:
+   ```
+   git clone https://github.com/Danieldo1/bitcoin-tracker
+   cd bitcoin-tracker
+   ```
 
-### `static`
+2. Запустите приложение с помощью Docker Compose:
+   ```
+   docker-compose up --build
+   ```
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+3. После успешного запуска, приложение будет доступно по адресу: `http://localhost:3000`
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+## 4. Структура проекта
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+- `/`: Код фронтенд части (Nuxt.js)
+- `backend/`: Код бэкенд части (Express.js)
+- `docker-compose.yml`: Конфигурация Docker Compose
+- `Dockerfile`: Инструкции для сборки Docker 
 
-### `store`
+## 5. Использование приложения
 
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+1. Откройте приложение в браузере: `http://localhost:3000`
+2. На главной странице вы увидите график цен на биткоин
+3. Используйте кнопки "День", "Неделя", "Месяц", "Год" для выбора периода отображения
+4. Для выбора любова кастомнова периода используйте поля ввода дат и нажмите "Применить"
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
-# bitcoin-tracker
+## 6. API эндпоинты
+
+### Получение исторических данных о ценах
+
+- URL: `/api/prices`
+- Метод: GET
+- Параметры запроса:
+  - `start`: начальная дата (timestamp)
+  - `end`: конечная дата (timestamp)
+- Пример запроса: `/api/prices?start=1609459200&end=1640995200`
+- Пример ответа:
+  ```json
+  [
+    {"id": 1, "timestamp": 1609459200, "price": 29374.15},
+    {"id": 2, "timestamp": 1609545600, "price": 32127.27},
+  ]
+  ```
+
+
+
